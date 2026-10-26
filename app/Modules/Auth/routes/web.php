@@ -10,6 +10,7 @@ use Modules\Auth\Controllers\NewPasswordController;
 use Modules\Auth\Controllers\PasswordController;
 use Modules\Auth\Controllers\PasswordResetLinkController;
 use Modules\Auth\Controllers\RegisteredUserController;
+use Modules\Auth\Controllers\UserManagementController;
 use Modules\Auth\Controllers\VerifyEmailController;
 
 Route::middleware('web')->group(function () {
@@ -65,5 +66,14 @@ Route::middleware('web')->group(function () {
     Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/admin/dashboard', [AdminDashboardController::class, 'index'])
             ->name('admin.dashboard');
+
+        Route::get('/admin/users', [UserManagementController::class, 'index'])
+            ->name('admin.users.index');
+
+        Route::patch('/admin/users/{user}/role', [UserManagementController::class, 'updateRole'])
+            ->name('admin.users.update-role');
+
+        Route::delete('/admin/users/{user}', [UserManagementController::class, 'destroy'])
+            ->name('admin.users.destroy');
     });
 });

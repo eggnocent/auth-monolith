@@ -25,6 +25,13 @@
                             <p class="text-3xl font-bold text-yellow-900">{{ $totalRegularUsers }}</p>
                         </div>
                     </div>
+
+                    <div class="mt-6">
+                        <a href="{{ route('admin.users.index') }}"
+                           class="inline-flex items-center rounded-md bg-gray-800 px-4 py-2 text-xs font-semibold uppercase tracking-widest text-white transition hover:bg-gray-700">
+                            Kelola Pengguna
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
