@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Modules\Auth\Controllers\AdminDashboardController;
 use Modules\Auth\Controllers\AuthenticatedSessionController;
 use Modules\Auth\Controllers\ConfirmablePasswordController;
 use Modules\Auth\Controllers\EmailVerificationNotificationController;
@@ -57,5 +58,12 @@ Route::middleware('web')->group(function () {
 
         Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
             ->name('logout');
+
+        Route::view('/user/dashboard', 'dashboard')->name('user.dashboard');
+    });
+
+    Route::middleware(['auth', 'role:admin'])->group(function () {
+        Route::get('/admin/dashboard', [AdminDashboardController::class, 'index'])
+            ->name('admin.dashboard');
     });
 });
