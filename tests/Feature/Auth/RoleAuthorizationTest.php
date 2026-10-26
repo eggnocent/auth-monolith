@@ -12,7 +12,8 @@ test('regular users receive a forbidden response from the admin dashboard', func
 
     $this->actingAs($user)
         ->get('/admin/dashboard')
-        ->assertForbidden();
+        ->assertForbidden()
+        ->assertSee('Akses Ditolak');
 });
 
 test('admins can access the admin dashboard', function () {
